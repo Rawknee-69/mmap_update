@@ -158,7 +158,7 @@ class Deploys(ApiBase):
                 full_path = os.path.join(root, file_name)
                 sha1 = hashlib.sha1()
                 with open(full_path, 'rb') as file:
-                    with mmap.mmap(file.fileno(), 0, prot=mmap.ACCESS_READ) as memory_map:
+                    with mmap.mmap(file.fileno(), 0, access=mmap.ACCESS_READ) as memory_map:
                         sha1.update(memory_map)
                 upload_files[rel_file.lstrip('./')] = sha1.hexdigest()
         return {"files": upload_files}
